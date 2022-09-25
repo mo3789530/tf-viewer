@@ -7,9 +7,9 @@ interface NestedSymbol {
 }
 
 const TF_PREFIX: Symbol = {
-  "+": "tf-result-add",
-  "-": "tf-result-destory",
-  "~": "tf-result-update",
+  "+": "tf-result--add",
+  "-": "tf-result--destory",
+  "~": "tf-result--update",
 };
 
 const NEST_OPEN_TOKEN: NestedSymbol = {
@@ -23,38 +23,42 @@ const NEST_CLOSE_TOKEN: NestedSymbol = {
 };
 
 export const parse = (input: string) => {
-  const inputArray = input.split("/n");
+  const inputArray = input.split("\n");
   let isBlock = false;
 
   let nesttedCSS: Array<string> = new Array<string>();
   const parsedInput = inputArray.map((line) => {
+
     const prefix = getPrefix(line);
     const suffix = getSuffix(line);
     if (
       !isBlock &&
       !prefix &&
-      !suffix &&
       /(will|must) be/.test(line) &&
       !nesttedCSS.length
     ) {
-        isBlock = true;
-    } 
-    else if (isBlock && prefix == "#" && /(will|must) be/.test(line)) {
       isBlock = false;
       return "</div>"
+    } 
+    else if (!isBlock && prefix == "#" && /(will|must) be/.test(line)) {
+      isBlock = true;
     }
     else if(!prefix && !suffix && !nesttedCSS.length) {
         isBlock = false;
     }
 
+
     // Title CSS
     if (prefix === "#" && /(will|must) be/.test(line)) {
-      return titleHtml(line);
+      return isBlock ? "</div>" + titleHtml(line) : titleHtml(line);
     }
 
     let cssClass: string | undefined = "";
 
     if (line == "") return "";
+
+    console.log(line);
+    console.log(isBlock);
 
     // Get body CSS
     if (isBlock) {
@@ -97,14 +101,14 @@ function getSuffix(input: string) {
 }
 
 function titleHtml(input: string) {
-  let cssClass = "";
-  let wrapperClass = "";
+  let cssClass = "tf-title"
+  let wrapperClass = "tf-div"
   switch (true) {
     case /(will|must) be created/.test(input):
       cssClass = "tf-title tf-title--create";
       wrapperClass = "tf-div";
       break;
-    case /(will|must) be update in-place/.test(input):
+    case /(will|must) be updated in-place/.test(input):
       cssClass = "tf-title tf-title--update";
       wrapperClass = "tf-div";
       break;
@@ -116,4 +120,5 @@ function titleHtml(input: string) {
       wrapperClass = "tf-div";
       break;
   }
+  return `<div class="${wrapperClass}"><span class="${cssClass}">${input}</span>`
 }
