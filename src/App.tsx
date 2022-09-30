@@ -3,7 +3,6 @@ import './App.css';
 import MenuAppBar from './components/Header';
 import { InputFilde } from './components/Input';
 import { View } from './components/View';
-import { Box } from '@mui/material';
 
 function App() {
 
@@ -14,11 +13,11 @@ function App() {
   };
   return (
     <div>
-      <MenuAppBar/>
-      <Box display={'flex'} flexDirection={'row'}>
-        <InputFilde value={value} handleChange={handleChange} maxWidth={'50%'}/>
-        <View value={value}></View>
-      </Box>
+      <MenuAppBar />
+      <div>
+        <InputFilde value={value} handleChange={handleChange} />
+        <View value={value}/>
+      </div>
 
     </div>
 
