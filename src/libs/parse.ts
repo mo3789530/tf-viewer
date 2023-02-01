@@ -40,7 +40,7 @@ export const parse = (input: string) => {
       isBlock = false;
       return "</div>"
     } 
-    else if (!isBlock && prefix == "#" && /(will|must) be/.test(line)) {
+    else if (!isBlock && prefix === "#" && /(will|must) be/.test(line)) {
       isBlock = true;
     }
     else if(!prefix && !suffix && !nesttedCSS.length) {
@@ -55,7 +55,7 @@ export const parse = (input: string) => {
 
     let cssClass: string | undefined = "";
 
-    if (line == "") return "";
+    if (line === "") return "";
 
     console.log(line);
     console.log(isBlock);
@@ -83,7 +83,7 @@ export const parse = (input: string) => {
 function getPrefix(input: string) {
   for (let index = 0; index < input.length; index++) {
     const c = input.charAt(index);
-    if (c != " ") {
+    if (c !== " ") {
       return c;
     }
   }
@@ -93,7 +93,7 @@ function getPrefix(input: string) {
 function getSuffix(input: string) {
   for (let index = input.length - 1; index >= 0; index--) {
     const c = input.charAt(index);
-    if (c != ",") {
+    if (c !== ",") {
       return c;
     }
   }

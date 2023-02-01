@@ -20,7 +20,7 @@ Terraform will perform the following actions:
 + instance_initiated_shutdown_behavior = (known after apply)
 + instance_state                       = (known after apply)
 + instance_type                        = "t2.micro"
-〜〜〜〜長いため省略〜〜〜〜
+# 〜〜〜〜長いため省略〜〜〜〜
 + main_route_table_id                  = (known after apply)
 + owner_id                             = (known after apply)
 + tags                                 = {
