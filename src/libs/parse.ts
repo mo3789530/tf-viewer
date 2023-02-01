@@ -72,7 +72,7 @@ export const parse = (input: string) => {
       } else if (NEST_CLOSE_TOKEN[prefix]) {
         cssClass = nesttedCSS.pop();
       }
-      if (cssClass == undefined) return "";
+      if (cssClass === undefined) return "";
       return `<pre class="tf-result ${cssClass}">${line}</pre>`;
     }
     return "";
@@ -115,6 +115,10 @@ function titleHtml(input: string) {
     case /(will|must) be destroyed/.test(input):
       cssClass = "tf-title tf-title--destroy";
       wrapperClass = "tf-div";
+      break;
+    case /(will|must) be read/.test(input):
+      cssClass = "tf-title tf-title--read";
+      wrapperClass = "tf-dev";
       break;
     default:
       wrapperClass = "tf-div";
