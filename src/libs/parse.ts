@@ -118,7 +118,7 @@ function titleHtml(input: string) {
       break;
     case /(will|must) be read/.test(input):
       cssClass = "tf-title tf-title--read";
-      wrapperClass = "tf-dev";
+      wrapperClass = "tf-div";
       break;
     default:
       wrapperClass = "tf-div";
