@@ -46,19 +46,25 @@ export const parse = (input: string) => {
     else if(!prefix && !suffix && !nesttedCSS.length) {
         isBlock = false;
     }
-
+    else if(!isBlock&&isResult(line)) {
+      console.debug(line)
+      isBlock = true;
+    }
 
     // Title CSS
     if (prefix === "#" && /(will|must) be/.test(line)) {
       return isBlock ? "</div>" + titleHtml(line) : titleHtml(line);
+    }
+    if (isResult(line)) {
+      return isBlock ? "</div>" + resultHtml(line) : resultHtml(line);
     }
 
     let cssClass: string | undefined = "";
 
     if (line === "") return "";
 
-    console.log(line);
-    console.log(isBlock);
+    // console.debug(line);
+    // console.debug(isBlock);
 
     // Get body CSS
     if (isBlock) {
@@ -125,4 +131,13 @@ function titleHtml(input: string) {
       break;
   }
   return `<div class="${wrapperClass}"><span class="${cssClass}">${input}</span>`
+}
+
+function isResult(input: string): boolean {
+  return input.startsWith("Plan:", 0);
+}
+
+
+function resultHtml(input: string) {
+  return `<div>${input}</div>`;
 }
