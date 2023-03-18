@@ -81,6 +81,9 @@ pre.tf-result--update {
 pre.tf-result--destory {
   background-color: #ffeef0;
 }
+pre.tf-result--read {
+  background-color: #62f0e4;
+}
 pre.tf-title{
   margin-top: 10px;
   font-weight: bold;
@@ -115,6 +118,10 @@ span.tf-title--destroy{
 span.tf-title--update{
   border-color: #f0cd62;
   color: #f0cd62;
+}
+span.tf-title--read{
+  border-color: #62f0e4;
+  color: #62f0e4;
 }
 .button-wrapper{
   margin: 0 0 10px 0;

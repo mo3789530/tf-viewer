@@ -1,15 +1,15 @@
 {
-  "main.css": "/tf-viewer/static/css/main.eb82ed65.chunk.css",
-  "main.js": "/tf-viewer/static/js/main.4c9eeea1.chunk.js",
-  "main.js.map": "/tf-viewer/static/js/main.4c9eeea1.chunk.js.map",
-  "static/js/1.0bed7f7d.chunk.js": "/tf-viewer/static/js/1.0bed7f7d.chunk.js",
-  "static/js/1.0bed7f7d.chunk.js.map": "/tf-viewer/static/js/1.0bed7f7d.chunk.js.map",
-  "static/js/2.d7c7f0ab.chunk.js": "/tf-viewer/static/js/2.d7c7f0ab.chunk.js",
-  "static/js/2.d7c7f0ab.chunk.js.map": "/tf-viewer/static/js/2.d7c7f0ab.chunk.js.map",
-  "runtime~main.js": "/tf-viewer/static/js/runtime~main.da38531f.js",
-  "runtime~main.js.map": "/tf-viewer/static/js/runtime~main.da38531f.js.map",
-  "static/css/main.eb82ed65.chunk.css.map": "/tf-viewer/static/css/main.eb82ed65.chunk.css.map",
-  "index.html": "/tf-viewer/index.html",
-  "precache-manifest.76bfa878408687ac0c993196ab463ea5.js": "/tf-viewer/precache-manifest.76bfa878408687ac0c993196ab463ea5.js",
-  "service-worker.js": "/tf-viewer/service-worker.js"
+  "files": {
+    "main.css": "/tf-viewer/static/css/main.9fe1b754.css",
+    "main.js": "/tf-viewer/static/js/main.91a5a75f.js",
+    "static/js/787.38a85ae1.chunk.js": "/tf-viewer/static/js/787.38a85ae1.chunk.js",
+    "index.html": "/tf-viewer/index.html",
+    "main.9fe1b754.css.map": "/tf-viewer/static/css/main.9fe1b754.css.map",
+    "main.91a5a75f.js.map": "/tf-viewer/static/js/main.91a5a75f.js.map",
+    "787.38a85ae1.chunk.js.map": "/tf-viewer/static/js/787.38a85ae1.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9fe1b754.css",
+    "static/js/main.91a5a75f.js"
+  ]
 }

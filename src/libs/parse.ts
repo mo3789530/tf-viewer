@@ -40,25 +40,31 @@ export const parse = (input: string) => {
       isBlock = false;
       return "</div>"
     } 
-    else if (!isBlock && prefix == "#" && /(will|must) be/.test(line)) {
+    else if (!isBlock && prefix === "#" && /(will|must) be/.test(line)) {
       isBlock = true;
     }
     else if(!prefix && !suffix && !nesttedCSS.length) {
         isBlock = false;
     }
-
+    else if(!isBlock&&isResult(line)) {
+      console.debug(line)
+      isBlock = true;
+    }
 
     // Title CSS
     if (prefix === "#" && /(will|must) be/.test(line)) {
       return isBlock ? "</div>" + titleHtml(line) : titleHtml(line);
     }
+    if (isResult(line)) {
+      return isBlock ? "</div>" + resultHtml(line) : resultHtml(line);
+    }
 
     let cssClass: string | undefined = "";
 
-    if (line == "") return "";
+    if (line === "") return "";
 
-    console.log(line);
-    console.log(isBlock);
+    // console.debug(line);
+    // console.debug(isBlock);
 
     // Get body CSS
     if (isBlock) {
@@ -72,7 +78,7 @@ export const parse = (input: string) => {
       } else if (NEST_CLOSE_TOKEN[prefix]) {
         cssClass = nesttedCSS.pop();
       }
-      if (cssClass == undefined) return "";
+      if (cssClass === undefined) return "";
       return `<pre class="tf-result ${cssClass}">${line}</pre>`;
     }
     return "";
@@ -83,7 +89,7 @@ export const parse = (input: string) => {
 function getPrefix(input: string) {
   for (let index = 0; index < input.length; index++) {
     const c = input.charAt(index);
-    if (c != " ") {
+    if (c !== " ") {
       return c;
     }
   }
@@ -93,7 +99,7 @@ function getPrefix(input: string) {
 function getSuffix(input: string) {
   for (let index = input.length - 1; index >= 0; index--) {
     const c = input.charAt(index);
-    if (c != ",") {
+    if (c !== ",") {
       return c;
     }
   }
@@ -116,9 +122,22 @@ function titleHtml(input: string) {
       cssClass = "tf-title tf-title--destroy";
       wrapperClass = "tf-div";
       break;
+    case /(will|must) be read/.test(input):
+      cssClass = "tf-title tf-title--read";
+      wrapperClass = "tf-div";
+      break;
     default:
       wrapperClass = "tf-div";
       break;
   }
   return `<div class="${wrapperClass}"><span class="${cssClass}">${input}</span>`
+}
+
+function isResult(input: string): boolean {
+  return input.startsWith("Plan:", 0);
+}
+
+
+function resultHtml(input: string) {
+  return `<div>${input}</div>`;
 }
